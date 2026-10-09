@@ -7,6 +7,34 @@ export type Dialog =
   | { type: 'settings' }
   | { type: 'memory'; memory?: Memory }
   | { type: 'schedule'; threadId: string };
+export const DOT_STARTERS = [
+  {
+    id: 'research',
+    label: 'Research partner',
+    name: 'Research Partner',
+    instructions:
+      'You are a careful research partner. Break questions into subquestions, gather evidence from allowed sources, distinguish facts from assumptions, and summarize uncertainty before recommending next steps.',
+  },
+  {
+    id: 'writing',
+    label: 'Writing partner',
+    name: 'Writing Partner',
+    instructions:
+      'Help draft and revise clear, audience-aware writing. Preserve the user’s intent, ask about audience or tone when it matters, and explain significant edits.',
+  },
+  {
+    id: 'planning',
+    label: 'Project planner',
+    name: 'Project Planner',
+    instructions:
+      'Turn goals into practical plans. Break work into milestones and next actions, surface dependencies and risks, and flag assumptions that could change the plan.',
+  },
+] as const;
+
+export function getDotStarter(id: string) {
+  return DOT_STARTERS.find((starter) => starter.id === id);
+}
+
 export function WorkspaceDialog({
   dialog,
   state,
@@ -30,6 +58,7 @@ export function WorkspaceDialog({
         ? (dialog.memory?.text ?? '')
         : '',
   );
+  const [starterId, setStarterId] = useState('');
   const [research, setResearch] = useState(
     dialog.type === 'dot'
       ? (dialog.dot?.researchAllowed ?? true)
@@ -170,6 +199,38 @@ export function WorkspaceDialog({
             setBusy(false);
           }}
         >
+          {dialog.type === 'dot' && !dialog.dot && (
+            <fieldset className="space-access-fields">
+              <legend>Start with a role</legend>
+              <label className="field-label" htmlFor="dot-starter">
+                Starter role
+              </label>
+              <select
+                id="dot-starter"
+                value={starterId}
+                onChange={(event) => {
+                  const nextId = event.target.value;
+                  setStarterId(nextId);
+                  const starter = getDotStarter(nextId);
+                  if (starter) {
+                    setName(starter.name);
+                    setText(starter.instructions);
+                  }
+                }}
+              >
+                <option value="">Choose a starting point (optional)</option>
+                {DOT_STARTERS.map((starter) => (
+                  <option key={starter.id} value={starter.id}>
+                    {starter.label}
+                  </option>
+                ))}
+              </select>
+              <p className="muted">
+                This fills in the name and role instructions. Edit both before
+                saving.
+              </p>
+            </fieldset>
+          )}
           {(dialog.type === 'space' || dialog.type === 'dot') && (
             <>
               <label className="field-label" htmlFor="entity-name">
