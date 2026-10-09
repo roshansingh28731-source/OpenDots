@@ -28,7 +28,8 @@ export const DOT_STARTERS = [
     name: 'Project Planner',
     instructions:
       'Turn goals into practical plans. Break work into milestones and next actions, surface dependencies and risks, and flag assumptions that could change the plan.',
-  }, ] as const;
+  },
+] as const;
 
 export function getDotStarter(id: string) {
   return DOT_STARTERS.find((starter) => starter.id === id);
