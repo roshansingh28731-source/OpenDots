@@ -610,12 +610,20 @@ export function App() {
                         <Settings2 size={20} />
                       </span>
                       <div>
-                        <strong>Connect your Dot</strong>
+                        <strong>Finish service setup</strong>
                         <p>
-                          Connect your model and conversation service in
-                          Settings to start chatting. Your Spaces and Dot
-                          preferences are ready to use.
+                          Add <code>{workspace.setup.missing.join(', ')}</code>
+                          to the server environment, then restart OpenDots to
+                          start chatting. Credentials are configured on the
+                          server, not in this browser.
                         </p>
+                        <button
+                          className="text-button"
+                          type="button"
+                          onClick={() => setDialog({ type: 'settings' })}
+                        >
+                          View setup details
+                        </button>
                         <a
                           href="https://github.com/CopilotKit/OpenDots/blob/main/docs/SETUP.md"
                           target="_blank"
