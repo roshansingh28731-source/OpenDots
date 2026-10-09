@@ -1,7 +1,11 @@
 import { expect, it } from 'vitest';
 import { renderToStaticMarkup } from 'react-dom/server';
 import type { Dot, State, WorkspaceState } from '../src/shared/types';
-import { DOT_STARTERS, getDotStarter, WorkspaceDialog } from '../src/client/WorkspaceDialog';
+import {
+  DOT_STARTERS,
+  getDotStarter,
+  WorkspaceDialog,
+} from '../src/client/WorkspaceDialog';
 
 const state = {
   settings: { researchAllowed: true, memoryAllowed: true },
