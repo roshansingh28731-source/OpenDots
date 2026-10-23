@@ -4280,3 +4280,137 @@ h3 {
   overflow-wrap: anywhere;
   font-size: 11px;
 }
+
+
+/* Premium workspace refinement — additive overrides to preserve existing app behavior. */
+:root {
+  color-scheme: light;
+  --ink: #25283a;
+  --muted: #777d91;
+  --line: #e5e7ef;
+  --blue: #667eea;
+  --blue-dark: #4f63c8;
+  --lavender: #eff1ff;
+  background: #f7f8fc;
+  color: var(--ink);
+}
+body {
+  background:
+    radial-gradient(ellipse at 88% 0%, rgba(206, 214, 255, .20), transparent 34rem),
+    #f7f8fc;
+}
+button, input, textarea, select {
+  transition: border-color .18s ease, box-shadow .18s ease, background-color .18s ease, transform .18s ease;
+}
+button:hover:not(:disabled) {
+  border-color: #d7dcf1;
+}
+.sidebar {
+  background: rgba(252, 252, 255, .96);
+  border-right-color: #e8eaf3;
+  box-shadow: 8px 0 28px rgba(45, 55, 95, .025);
+}
+.wordmark { color: #25283a; }
+.nav-item { border-radius: 10px; }
+.nav-item.active {
+  background: linear-gradient(110deg, #eef0ff, #f5f5ff);
+  color: #4e61c1;
+  box-shadow: inset 2px 0 #7889ed;
+}
+.workspace { background: transparent; }
+.topbar {
+  background: rgba(250, 250, 255, .82);
+  backdrop-filter: blur(14px);
+  border-bottom-color: #e8eaf2;
+}
+.main-content { padding-top: clamp(32px, 5vw, 64px); }
+.hero h1 { color: #292d41; letter-spacing: -2.2px; }
+.eyebrow { color: #7580b1; }
+.composer {
+  border-color: #e0e4f1;
+  border-radius: 18px;
+  box-shadow: 0 14px 40px rgba(54, 67, 120, .065), 0 2px 6px rgba(54, 67, 120, .035);
+}
+.composer:focus-within {
+  border-color: #aeb9f5;
+  box-shadow: 0 0 0 4px rgba(119, 137, 237, .10), 0 14px 40px rgba(54, 67, 120, .07);
+}
+.send-button, .primary {
+  background: linear-gradient(135deg, #8292ed, #6879d7);
+  border-color: #7182df;
+  box-shadow: 0 4px 10px rgba(92, 108, 202, .16);
+}
+.send-button:hover:not(:disabled), .primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #7183e6, #596bc9);
+}
+.suggestion {
+  border-color: #e5e7f0;
+  background: rgba(255, 255, 255, .82);
+  border-radius: 13px;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.suggestion:hover {
+  transform: translateY(-2px);
+  border-color: #cfd5f5;
+  box-shadow: 0 10px 25px rgba(60, 73, 130, .07);
+  background: #fff;
+}
+.task-row, .empty-activity, .page-card, .space-card {
+  border-radius: 13px;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: #aab6f2;
+  box-shadow: 0 0 0 3px rgba(119, 137, 237, .11);
+}
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline-color: #9aa8f4;
+}
+@media (max-width: 900px) {
+  .main-content, .main-content.overview {
+    padding: 34px 26px 28px;
+  }
+  .topbar { padding: 0 24px; }
+  .hero { padding-right: 0; }
+  .hero h1 { font-size: clamp(30px, 5vw, 43px); }
+  .hero-mascot { width: 160px; height: 180px; }
+  .hero-mascot .mascot { width: 160px; height: 160px; }
+}
+@media (max-width: 620px) {
+  .main-content, .main-content.overview {
+    padding: 30px 17px 24px;
+  }
+  .topbar {
+    height: 64px;
+    padding: 0 16px 0 54px;
+  }
+  .breadcrumbs { gap: 7px; font-size: 9px; }
+  .top-actions { gap: 8px; }
+  .mode-badge { font-size: 7px; letter-spacing: .6px; }
+  .hero { align-items: flex-start; }
+  .hero h1 { font-size: 31px; line-height: 1.14; letter-spacing: -1.5px; }
+  .hero-copy > p { max-width: 34ch; font-size: 12px; }
+  .hero-mascot { width: 86px; height: 105px; margin-left: 4px; }
+  .hero-mascot .mascot { width: 95px; height: 95px; }
+  .mascot-caption, .spark-one { display: none; }
+  .spark-two { bottom: 18px; left: -4px; }
+  .composer { margin-top: 22px; padding: 17px 15px 12px; min-height: 132px; }
+  .composer textarea { min-height: 58px; font-size: 14px; }
+  .suggestions { margin-top: 25px; }
+  .suggestion-grid { grid-template-columns: 1fr; gap: 9px; }
+  .suggestion { min-height: 82px; padding: 14px 15px 14px 53px; }
+  .suggestion-icon { position: absolute; left: 16px; top: 17px; margin: 0; }
+  .suggestion strong { font-size: 12px; }
+  .suggestion p { font-size: 10px; }
+  .recent { margin-top: 27px; }
+  .empty-activity { padding: 16px 13px; gap: 11px; }
+  .empty-decoration { display: none; }
+  .main-footer { margin-top: 30px; flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
